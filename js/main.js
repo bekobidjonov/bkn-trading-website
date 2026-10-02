@@ -1,22 +1,19 @@
-// Language switch: Japanese is the default, English is optional.
 (function () {
   var root = document.documentElement;
 
+  // Language: Japanese by default, English optional (remembered per browser)
   function setLang(lang) {
     root.setAttribute('lang', lang);
     document.querySelectorAll('.lang-switch button').forEach(function (b) {
-      b.classList.toggle('on', b.dataset.lang === lang);
-      b.setAttribute('aria-pressed', b.dataset.lang === lang);
+      var on = b.dataset.lang === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on);
     });
     var title = document.querySelector('title');
     if (title && title.dataset[lang]) title.textContent = title.dataset[lang];
     try { localStorage.setItem('bkn-lang', lang); } catch (e) {}
   }
-
-  var saved = null;
-  try { saved = localStorage.getItem('bkn-lang'); } catch (e) {}
-  setLang(saved === 'en' ? 'en' : 'ja');
-
+  setLang(root.getAttribute('lang') === 'en' ? 'en' : 'ja');
   document.querySelectorAll('.lang-switch button').forEach(function (b) {
     b.addEventListener('click', function () { setLang(b.dataset.lang); });
   });
@@ -31,7 +28,28 @@
     });
   }
 
-  // Footer year
+  // Header border on scroll
+  var header = document.querySelector('.site-header');
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = (i % 4) * 0.08 + 's';
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
