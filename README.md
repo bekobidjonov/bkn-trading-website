@@ -21,3 +21,8 @@ Every piece of text appears twice, once per language:
 ```html
 <span lang="ja">日本語テキスト</span><span lang="en">English text</span>
 ```
+
+## Photos
+
+Car photos are free-licence images loaded from [Unsplash](https://unsplash.com/license) (commercial use allowed).
+To use your own photos, put them in an `images/` folder and replace the `https://images.unsplash.com/...` URLs in the HTML.

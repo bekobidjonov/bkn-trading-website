@@ -378,3 +378,53 @@ a.contact-row:hover .go { transform: translateX(6px); color: var(--gold); }
   .footer-cols { gap: 40px; }
   .wa-float { right: 16px; bottom: 16px; width: 52px; height: 52px; }
 }
+
+/* ---------- Photos ---------- */
+.hero-photo { margin-top: 80px; overflow: hidden; aspect-ratio: 21 / 8; background: var(--ink-06); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; animation: slowzoom 14s var(--ease) both; }
+@keyframes slowzoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero .stats { margin-top: 0; border-top: 0; }
+
+.gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 48px; }
+.gallery-head .section-head { margin-bottom: 0; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid var(--ink-12); background: transparent; color: var(--ink-60); cursor: pointer;
+  font: inherit; font-size: 13px; letter-spacing: 0.06em; padding: 8px 18px; border-radius: 999px;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.chip:hover { color: var(--ink); border-color: var(--ink); }
+.chip.on { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+.cars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 24px; }
+.car { margin: 0; }
+.car.hide { display: none; }
+.car-img { overflow: hidden; aspect-ratio: 4 / 3; background: var(--ink-06); }
+.car-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.car:hover .car-img img { transform: scale(1.06); }
+.car figcaption { padding-top: 16px; border-bottom: 1px solid var(--ink-12); padding-bottom: 14px; transition: border-color 0.5s var(--ease); }
+.car:hover figcaption { border-color: var(--gold); }
+.car-cat { display: block; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+html[lang="ja"] .car-cat { letter-spacing: 0.1em; font-size: 12px; }
+.car-name { display: block; font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1.35; margin-top: 4px; }
+
+.gallery-foot { margin-top: 64px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding: 32px 0; border-top: 1px solid var(--ink-12); }
+.gallery-foot p { font-family: var(--serif); font-size: 22px; }
+html[lang="ja"] .gallery-foot p { font-size: 18px; letter-spacing: 0.04em; }
+
+.photo-band { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 120px; }
+.photo-band img { width: 100%; height: 420px; object-fit: cover; background: var(--ink-06); }
+
+@media (max-width: 1000px) {
+  .cars { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .hero-photo { margin-top: 56px; aspect-ratio: 4 / 3; }
+  .cars { grid-template-columns: 1fr 1fr; gap: 28px 14px; }
+  .car-name { font-size: 18px; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px; scrollbar-width: none; }
+  .chip { white-space: nowrap; }
+  .photo-band { grid-template-columns: 1fr; gap: 12px; margin-bottom: 80px; }
+  .photo-band img { height: 240px; }
+  .gallery-foot { margin-top: 40px; }
+}

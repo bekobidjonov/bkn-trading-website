@@ -53,3 +53,19 @@
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+// Vehicle gallery filter
+(function () {
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.toggle('on', x === c); });
+      var f = c.dataset.filter;
+      document.querySelectorAll('.car').forEach(function (car) {
+        var show = f === 'all' || car.dataset.cat === f;
+        car.classList.toggle('hide', !show);
+        if (show) car.classList.add('in');
+      });
+    });
+  });
+})();
