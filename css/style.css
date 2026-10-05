@@ -428,3 +428,12 @@ html[lang="ja"] .gallery-foot p { font-size: 18px; letter-spacing: 0.04em; }
   .photo-band img { height: 240px; }
   .gallery-foot { margin-top: 40px; }
 }
+
+/* ---------- Logo image ---------- */
+.logo img { height: 60px; width: auto; display: block; transition: height 0.4s var(--ease); }
+.site-header.scrolled .logo img { height: 48px; }
+.logo-footer img { height: 72px; }
+@media (max-width: 760px) {
+  .logo img, .site-header.scrolled .logo img { height: 40px; }
+  .logo-footer img { height: 60px; }
+}
