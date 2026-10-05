@@ -61,7 +61,7 @@
     c.addEventListener('click', function () {
       chips.forEach(function (x) { x.classList.toggle('on', x === c); });
       var f = c.dataset.filter;
-      document.querySelectorAll('.car').forEach(function (car) {
+      document.querySelectorAll('#cars .car').forEach(function (car) {
         var show = f === 'all' || car.dataset.cat === f;
         car.classList.toggle('hide', !show);
         if (show) car.classList.add('in');
